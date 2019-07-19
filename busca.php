@@ -32,14 +32,13 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="#">Gênero 1</a></li>
-			<li><a href="#">Gênero 2</a></li>
-			<li><a href="#">Gênero 3</a></li>
-			<li><a href="#">Gênero 4</a></li>
-			<li><a href="#">Gênero 5</a></li>
-			<li><a href="#">Gênero 6</a></li>
+			<?php
+				foreach($generos as $g){
+					echo('<li><a href="#">'.$g.'</a></li>');
+				}
+			?>
 		</ul>
-		<form>
+		<form method="GET" action="busca.php">
 			<input type="text" name="trecho">
 			<button type="submit">Buscar</button>
 		</form>
@@ -47,54 +46,19 @@
 	
 	<main>
 		<section>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
+			<?php
+				if(count($filmesFiltrados) == 0){
+					echo('Nenhum filme encontrado');
+				}
+			?>
+			<?php foreach($filmesFiltrados as $i => $f){ ?>
+				<article>
+					<a href="filme.php?id=<?= $i ?>">
+						<img src="./assets/img/cartazes/cartaz-<?= $i ?>.png" alt="<?= $f['titulo'] ?>">
+						<span>Ver +</span>
+					</a>
+				</article>
+			<?php } ?>
 		</section>
 	</main>
 </body>
