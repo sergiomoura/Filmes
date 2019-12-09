@@ -1,6 +1,5 @@
 <?php
 
-phpinfo();
 	// Incluindo $filmes
 	include('./includes/filmes.php');
 
@@ -8,7 +7,21 @@ phpinfo();
 	include('./includes/generos.php');
 
 	$pos = $_GET['pos'];
+	
+
+	// Verificando se $pos é uma posição inválida do meu array
+	if($pos >= count($filmes)){
+		include('./erros/404.php');
+		die();
+	}
+
+	// Levantando o filme da posição $pos 
 	$filme = $filmes[$pos];
+
+	// echo('<pre>');
+	// print_r($filme);
+	// echo('</pre>');
+	// die();
 	
 ?>
 
@@ -19,7 +32,7 @@ phpinfo();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Turma da Mônica - Laços - Clube do Filme</title>
+	<title><?= $filme['titulo']; ?> - Clube do Filme</title>
 
 	<!-- Meu estilo -->
 	<link rel="stylesheet" href="./assets/css/geral.css">
@@ -42,8 +55,8 @@ phpinfo();
 	</nav>
 	<main>
 
-		<h2>Nome do Filme</h2>
-		<img src="./assets/img/cartazes/cartaz-0.png" alt="Título do filme" class="cartaz">
+		<h2><?= $filme['titulo']; ?></h2>
+		<img src="./assets/img/cartazes/cartaz-<?= $pos ?>.png" alt="<?= $filme['titulo']; ?>" class="cartaz">
 		<section>
 
 			<div class="sinopse">
@@ -53,7 +66,7 @@ phpinfo();
 
 			<div class="censura">
 				<h5>Censura</h5>
-				<div>Livre</div>
+				<div><?= $filme['censura'] === 0 ? 'Livre' : $filme['censura'] . ' anos' ?></div>
 			</div>
 			
 			<div class="critica">
@@ -62,7 +75,7 @@ phpinfo();
 			</div>
 		</section>
 
-		<iframe src="https://www.youtube.com/embed/wmiIUN-7qhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<?= $filme['trailer'] ?>
 	</main>
 </body>
 
