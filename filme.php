@@ -40,19 +40,11 @@
 </head>
 
 <body>
-	<nav>
-		<ul>
-			<li><a href="#">Gênero 1</a></li>
-			<li><a href="#">Gênero 2</a></li>
-			<li><a href="#">Gênero 3</a></li>
-			<li><a href="#">Gênero 4</a></li>
-			<li><a href="#">Gênero 5</a></li>
-		</ul>
-		<form method="GET" action="busca.php">
-			<input type="text" name="trecho">
-			<button type="submit">Buscar</button>
-		</form>
-	</nav>
+	
+	<!-- Início da navegação -->
+	<?php include('./includes/nav.php'); ?>
+	<!-- Fim da navegação -->
+	
 	<main>
 
 		<h2><?= $filme['titulo']; ?></h2>
