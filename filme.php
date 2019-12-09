@@ -1,18 +1,15 @@
 <?php
+
+phpinfo();
 	// Incluindo $filmes
 	include('./includes/filmes.php');
 
 	// Incluindo $generos
 	include('./includes/generos.php');
 
-	if( !array_key_exists('id',$_GET) || $_GET['id'] >= count($filmes) ){
-		echo('FILME INEXISTENTE!');
-		die();
-	}
-
-	$id = 1 * $_GET['id'];
-	$f = $filmes[$id];
-
+	$pos = $_GET['pos'];
+	$filme = $filmes[$pos];
+	
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +29,11 @@
 <body>
 	<nav>
 		<ul>
-			<?php
-				foreach($generos as $g){
-					echo('<li><a href="#">'.$g.'</a></li>');
-				}
-			?>
+			<li><a href="#">Gênero 1</a></li>
+			<li><a href="#">Gênero 2</a></li>
+			<li><a href="#">Gênero 3</a></li>
+			<li><a href="#">Gênero 4</a></li>
+			<li><a href="#">Gênero 5</a></li>
 		</ul>
 		<form method="GET" action="busca.php">
 			<input type="text" name="trecho">
@@ -45,27 +42,27 @@
 	</nav>
 	<main>
 
-		<h2><?= $f['titulo'] ?></h2>
-		<img src="./assets/img/cartazes/cartaz-<?= $id ?>.png" alt="<?= $f['titulo'] ?>" class="cartaz">
+		<h2>Nome do Filme</h2>
+		<img src="./assets/img/cartazes/cartaz-0.png" alt="Título do filme" class="cartaz">
 		<section>
 
 			<div class="sinopse">
 				<h5>Sinopse</h5>
-				<div><?= $f['sinopse'] ?></div>
+				<div><?= $filme['sinopse'] ?></div>
 			</div>
 
 			<div class="censura">
 				<h5>Censura</h5>
-				<div><?= ($f['censura'] == 0) ? ('Livre') : ($f['censura']) ?></div>
+				<div>Livre</div>
 			</div>
 			
 			<div class="critica">
 				<h5>Crítica</h5>
-				<div><?= $f['critica'] ?></div>
+				<div><?= $filme['critica'] ?></div>
 			</div>
 		</section>
 
-		<?= $f['trailer'] ?>
+		<iframe src="https://www.youtube.com/embed/wmiIUN-7qhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</main>
 </body>
 
